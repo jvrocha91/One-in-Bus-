@@ -1,0 +1,129 @@
+
+
+body{   
+        background-image: url(./assents/background_azul01.jpg) ;
+        
+        font-family: 'Oswald', sans-serif;
+        
+}
+
+
+.Titulo {
+    background-color: rgb(231,212,100);
+    font-size: 50px;
+    display: flex;
+    text-align: center;
+    padding-left: 750px;
+    padding-bottom: 50px;
+    height: 200px;
+
+
+}
+
+.Titulo img{
+     
+
+    width: 150px ;
+    height: 150px ;
+    padding-top: 50px;
+    border-radius: 50%;
+
+
+}
+
+ul{
+
+    list-style-type: none;
+    
+}
+
+ul li:hover {
+  
+    transform: scale(1.1)
+
+}
+
+
+a{
+
+    text-decoration: solid;
+    color: black;
+
+}
+
+
+
+.abas{
+
+    width: 1900px;
+    height: 600px;
+
+}
+
+.Bilhetes{
+
+    background-color:rgb(231,212,100) ;
+    font-size: 50px;
+    width: 300px;
+    height: 150px;
+    padding:5px;
+    border: 1px solid blue;
+    text-align: center;
+    position:relative;
+    left:400px;
+    top:55px;
+    border-radius: 10px;
+
+
+
+}
+
+.Recarga{
+
+    background-color: rgb(231,212,100);
+    font-size: 50px;
+    width: 300px;
+    height: 150px;
+    padding:5px;
+    border: 1px solid blue;
+    text-align: center;
+    position:relative;
+    left: 1100px;
+    bottom:130px;
+    border-radius: 10px;
+
+
+}
+
+.Gerar_Bilhete{
+
+    background-color: rgb(231,212,100);
+    font-size: 50px;
+    width: 300px;
+    height: 150px;
+    padding:5px;
+    border: 1px solid blue;
+    text-align: center;
+    position:relative;
+    left: 400px; 
+    border-radius: 10px;   
+
+
+}
+
+.Historico{
+
+    background-color: rgb(231,212,100);
+    font-size: 50px;
+    width: 300px;
+    height: 150px;
+    padding:5px;
+    border: 1px solid blue;
+    text-align: center;
+    position:relative;
+    left: 1100px;
+    bottom: 180px; 
+    border-radius: 10px;   
+
+}
+
