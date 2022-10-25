@@ -1,23 +1,23 @@
 
 
 body{   
-        background-image: url(./assents/background05.webp) ;
-        background-size: cover;
-       
+         background-color: #5344ab;
+        background-size:cover;
         font-family: 'Oswald', sans-serif;
+         
         
 }
 
 
 .Titulo {
-    background-color: rgb(59, 65, 173);
-    font-size: 50px;
-    display: flex;
+    background-color: rgb(43, 49, 156);
+    font-size: 45px;
+    display:flex;
     text-align: center;
-    padding-left: 750px;
+    padding-left: 730px;
     padding-bottom: 50px;
-    height: 200px;
-    color: rgb(24, 22, 22);
+    height: 130px;
+    color: rgb(187, 187, 187);
 
 
 }
@@ -27,7 +27,6 @@ body{
 
     width: 250px ;
     height: 250px ;
-    padding-top: 20px;
     border-radius: 50%;
 
 
@@ -49,7 +48,7 @@ ul li:hover {
 a{
 
     text-decoration: solid;
-    color: rgb(41, 36, 36);
+    color: rgb(187, 187, 187);
 
 }
 
@@ -59,12 +58,13 @@ a{
 
     width: 1900px;
     height: 600px;
+    color: rgb(187, 187, 187);    
 
 }
 
-.Bilhetes{
+.Gerar_Bilhete{
 
-    background-color:rgb(110, 116, 214) ;
+    background-color: rgb(110, 116, 214);
     font-size: 50px;
     width: 300px;
     height: 130px;
@@ -75,9 +75,8 @@ a{
     left:450px;
     top:55px;
     border-radius: 50px;
-
-
-
+    
+   
 }
 
 .Recarga{
@@ -93,11 +92,11 @@ a{
     left: 1050px;
     bottom:110px;
     border-radius: 50px;
-
+    
 
 }
 
-.Gerar_Bilhete{
+.Bilhetes{
 
     background-color: rgb(110, 116, 214);
     font-size: 50px;
@@ -108,8 +107,8 @@ a{
     text-align: center;
     position:relative;
     left: 450px; 
-    border-radius: 50px;   
-
+    border-radius: 50px;
+      
 
 }
 
@@ -125,8 +124,9 @@ a{
     position:relative;
     left: 1050px;
     bottom: 170px; 
-    border-radius: 50px; 
-    color: rgb(41, 36, 36);
+    border-radius: 50px;   
+    color: rgb(187, 187, 187);
+    
 
 }
 
