@@ -19,18 +19,19 @@
     <header class="Titulo">
 
             <h1>One in Bus</h1>
-            <img src="assents/Grey_Clean_Vintage_Travel_Logo__1_-removebg-preview.png" alt="logo">
+            <img class="logo" src="assents/Grey_Clean_Vintage_Travel_Logo__1_-removebg-preview.png" alt="logo">
 
-     </header>        
+    </header>      
+       
             
 
     
     <br><br>
 
-    <div class="abas">
+    <section class="abas">
 
         <ul>
-             <li class="Gerar_Bilhete"><a alt="Gerar Bilhete" href="Gerador.html">Gerar Bilhete</a></li>
+            <li class="Gerar_Bilhete"><a alt="Gerar Bilhete" href="Gerador.html">Gerar Bilhete</a></li>
             <br>
             <li class="Recarga">Recarga</li>
             <br>
@@ -39,19 +40,68 @@
             <li class="Historico">Histórico</li>
             <br>
 
-
         </ul>
 
-    </div>
-    <br> <br> <br> <br>
+    </section>
+    <br><br> <br> <br>
 
-    <section class:dados>
+    <section class="dados">
 
         <p>Projeto Integrador_01 - Engenharia de Software - Equipe 07 - PUCCamp 2022</p>
     
     </section>
 
+
+
+
+
+
+    <div id="modal-termo" class="modal-container">
+        <div class="modal">
+           <!---- <button class="fechar">X</button> -->
+            <h1 class="termos">Termos de uso</h1>
+            <h3 class="subsubtitulo">Este é um sistema para compras de passagens de transporte público. Ele é dividido em 4 principais setores, sendo eles: <br><br>
+                Gerar bilhete - Aqui você gerará o seu bilhete primário (Seu ID), ele será vinculado com os demais bilhetes que poderão ser selecionados por você! <br><br>
+                Recarga - Neste espaço, é possível escolher qual tipo de passagem você deseja, cada passagem possui funcionalidades diferentes, os tutoriais de uso de cada uma delas pode ser encontrado nesta mesma aba! Além de escolher a passagem, todos os pagamentos são realizados a partir da aba Recarga!<br><br>
+                Bilhetes - Nesta área é possível encontrar as informações dos seus bilhetes válidos com suas respectivas informações como código, data de emissão, data de validade, preço, quantos usos ainda restam, e assim sucessivamente.<br><br>
+                Histórico - Por último, na aba "Histórico" é possível verificar todas as ações realizadas com os bilhetes e/ou sistema, ou seja, se você comprou, utilizou ou deixou expirar algum bilhete. Dessa forma, nessa área, é possível administrar de uma melhor forma o uso dos seus bilhetes.<br><br>
+                
+                Este sistema não recolhe nenhum dado pessoal e/ou comprometedor além do necessário. Clicando no botão "ACEITO" abaixo, você concorda que para a utilização dos serviços, é necessária a inserção de formas de pagamentos para as recargas dos bilhetes. Destarte, todas as informações coletadas serão mantidas em total sigilo e serão utilizadas somente para melhor usufruto do sistema pelo usuário.</h3>
+            <form>
+                   
+                   <input type="button" class="button" value="Aceitar">
+            </form>
+        </div>
+    </div>
+
+    <!--Termos de uso-->
+    <script> 
+
+        function iniciaModal(modalID){
+           {
+            if(localStorage.fechaModal !==modalID){
+            const modal = document.getElementById(modalID);
+            if(modal){
+            modal.classList.add('mostrar');
+            modal.addEventListener('click', (e) => {
+                if(e.target.id == modalID || e.target.className || e.target.button     == 'fechar') { 
+                modal.classList.remove('mostrar');
+                localStorage.fechaModal = modalID;
+                
+
+             }  
+          });
+         }
+        }
+        }
+        
+        const logo = document.querySelector('.contato .button');
+        iniciaModal('modal-termo');
+       
+    </script>
+
     
 </body>
 </html>
+
 
