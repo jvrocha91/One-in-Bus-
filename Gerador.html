@@ -10,8 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador</title>
     <link rel="stylesheet" href="style.css">
-    <script type = "module" src="generate.js"></script> 
-
+    <script src="./functions.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="icon" href="assents/Grey_Clean_Vintage_Travel_Logo__1_-removebg-preview.png"/>
 </head>
 
 
@@ -24,23 +25,17 @@
     </header>
     
     <section class="gerarsection"><p id="code"></p>
-             <script>scr="index.js"</script>
+      <p id="num1"></p>
     </section>
 
+    
+    
 
-    <button class="gerarB">Gerar Bilhete</button> 
 
-    <script>
-        function makeid(length)() {
-          alert("The function 'test' is executed");
-        }
-      </script>
+  <input type = "button" class="gerar_Bil" onclick = "cadastraBilhete()" value = "Gerar Bilhete"> </input>
 
-<!----
- <input> 
-  <input type = "button" onclick = "log(makeid(5))" value = "Gerar Bil">
- </input>
--->
+
+
  </body>
  </html>
 
