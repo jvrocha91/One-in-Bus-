@@ -5,23 +5,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assents/Grey_Clean_Vintage_Travel_Logo__1_-removebg-preview.png"/>
 
     <title>One in Bus</title>
 </head>
 <body>
 
 
-    <header class="Titulo">
+        <section>
+        <p class="top_menu">Melhores viagens pelos melhores preços</p>
+        </section>
 
-            <h1>One in Bus</h1>
+    
+
+            <h1 class="Titulo">One in Bus</h1>
             <img class="logo" src="assents/Grey_Clean_Vintage_Travel_Logo__1_-removebg-preview.png" alt="logo">
 
-    </header>      
+      
        
             
 
@@ -30,10 +35,10 @@
 
     <section class="abas">
 
-        <ul>
+        <ul class="icons">
             <li class="Gerar_Bilhete"><a alt="Gerar Bilhete" href="Gerador.html">Gerar Bilhete</a></li>
             <br>
-            <li class="Recarga">Recarga</li>
+            <li class="Recarga"><a alt="Recarga" href="Recarga.html">Recarga</a></li>
             <br>
             <li class="Bilhetes">Bilhetes</li>
             <br>
@@ -41,18 +46,13 @@
             <br>
             <li class="Pagina teste"><a alt="Teste" href="teste.html">Teste</a></li>
             <br>
-            
+
         </ul>
 
     </section>
     <br><br> <br> <br>
 
-    <section class="dados">
-
-        <p>Projeto Integrador_01 - Engenharia de Software - Equipe 07 - PUCCamp 2022</p>
     
-    </section>
-
 
 
 
@@ -89,13 +89,14 @@
                 if(e.target.id == modalID || e.target.className || e.target.button     == 'fechar') { 
                 modal.classList.remove('mostrar');
                 localStorage.fechaModal = modalID;
-                
+        
 
              }  
           });
          }
         }
         }
+    }
         
         const logo = document.querySelector('.contato .button');
         iniciaModal('modal-termo');
@@ -105,5 +106,3 @@
     
 </body>
 </html>
-
-
