@@ -449,3 +449,36 @@ display: block;
     border: 3px solid rgb(112, 90, 169);
 
 }
+
+* Recarga-------------------------------------*/
+
+.Header_Historico{
+
+    background-color: #3e2888; 
+display:flex ; 
+padding-left: 700px; 
+padding-bottom: 20px; 
+height: 150px; 
+
+}
+
+.Header_Historico h3{ 
+
+    font-size: 70px; 
+    color: rgb(187, 187, 187); 
+    text-align: center; 
+    position: absolute; 
+    left:750px;
+    
+    } 
+
+
+.Historico_exibicao{
+
+    background-color: rgb(112, 90, 169);
+    width: 1200px;
+    height: 500px;
+    margin-top: 50px;
+    margin-left: 320px;
+}    
+    
