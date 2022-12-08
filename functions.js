@@ -116,8 +116,7 @@ function pegaDataDePrimeiroUso()
         if (response.data) {
 
             console.log(reponse.data)
-            if (response.data.dataPrimeiroUso)
-
+        
         }
 
     })
@@ -141,4 +140,47 @@ function pegaDataDePrimeiroUso()
 
 }
 
+function GetHistory()
+{
+    let url = 'http://localhost:4000/HistoricoUso/'
+
+    let res = axios.get(url).then(response => {
+
+        if (response.data) {
+
+            showHistorico(response.data)
+
+            showmessageSuccess();
+
+            const msg = new Comunicado(response.data.mensagem);
+
+            console.log(msg.get());
+
+        }
+
+    })
+
+        .catch(error => {
+
+            if (error.response) {
+
+                showmessageError();
+
+                const msg = new Comunicado
+
+                (error.reponse.data.mensagem);
+
+                console.log(msg.get());
+
+}
+
+        })
+ 
+}
+
+function showHistorico(data)
+{
+    var his = data
+    
+}
 

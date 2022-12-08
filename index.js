@@ -141,7 +141,7 @@ function encontrarTipoDoBIlhete(bd)
 	this.bd=bd;
 
 	this.findBilheteType = async function(codigo){
-
+0
 		const bilheteType = 'select tipo_bilhete.TIPO_BILHETE FROM BILHETE JOIN TIPO_BILHETE on BILHETE.ID_USUARIO_BILHETE = tipo_bilhete.FK_ID_USUARIO_BILHETE where bilhete.FK_ID_USUARIO_BILHETE=:0';
 		switch (bilheteType)
 		{
@@ -164,6 +164,17 @@ function encontrarTipoDoBIlhete(bd)
 		return await conexao.execute(bilheteType, [(codigo)])
 	}
 	
+}
+function selectTheHistorico(bd)
+{
+	this.bd=bd;
+	this.findSelectedHistory = async function(codigo){
+
+	const selecionarHistorico = 'select DATA_DE_USO.USO_DO_BILHETE FROM BILHETE JOIN USO_DO_BILHETE on BILHETE.ID_USUARIO_BILHETE = tipo_bilhete.FK_ID_USUARIO_BILHETE where bilhete.FK_ID_USUARIO_BILHETE=:0';
+
+	console.log(selecionarHistorico)
+	return await conexao.execute(selecionarHistorico, [(codigo)])
+	}
 }
 
 async function inclusaoRecarga(req, res) {
@@ -199,6 +210,18 @@ async function pegarTipoBilhete(req, res) {
 	}
 	catch (err) {
 		console.log('Error in pegarTipoBilhete');
+		console.log(err)
+	}
+}
+async function selectHistorico(req, res){
+	const codigo=req.body.cdb
+	console.log(codigo)
+	try{
+		await global.historicos.selectTheHistorico(codigo);
+		console.log("Selecting Funciona")
+	}
+	catch(err){
+		console.log("error in selecting")
 		console.log(err)
 	}
 }
@@ -260,6 +283,7 @@ async function inclusaoUso(req, res) {
     }
 }
 
+
 async function abrirServer() {
 	const bd = new conectarNoBancoDeDados();
 	await bd.criadorDeTabelas();
@@ -268,6 +292,7 @@ async function abrirServer() {
 	global.usos = new inserirUsosDoBilhete(bd);
 	global.data = new getDataPrimeiroUso(bd);
 	global.tipo = new encontrarTipoDoBIlhete(bd);
+	global.historicos = new selectTheHistorico(bd);
 
 	app.use(express.json());
 	app.use(cors());
@@ -283,8 +308,9 @@ async function abrirServer() {
 	app.post('/Bilhete', inclusaoBilhete);
 	app.post('/Recarga', inclusaoRecarga);
 	app.post('/usoBilhete', inclusaoUso);
-	app.post('/dataVencimento',pegarDatavencimento);
-	app.post('/tipoBilhete', findBilheteType)
+	app.post('/dataVencimento',pegarDataVencimento);
+	app.post('/tipoBilhete', pegarTipoBilhete)
+	app.get('/HistoricoUso',selectHistorico)
 	console.log('Server port ' + PORT);
 	app.listen(PORT);
 }
