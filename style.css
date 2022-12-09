@@ -1,3 +1,5 @@
+/*Menu--------------------------*/ 
+
 body{    
 
 background-color: rgb(43, 49, 156); 
@@ -12,10 +14,19 @@ font-family: 'Space Mono', monospace;
 .top_menu{
 
     position: absolute;
-    left: 580px;
+   left:140px;
     font-size: 35px;
     color: rgba(255, 255, 255, 0.763);
     text-align: center;
+    background-color: #3e2888;
+    border-radius: 10px;
+    height: 90px;
+    width: 1650px;
+    padding-top: 30px;
+
+
+
+
     
 }
 
@@ -52,20 +63,49 @@ font-family: 'Space Mono', monospace;
 
     list-style-type: none; 
     position: absolute;
-    width: 480px;
+    width: 570px;
     height: 420px;
-    left: 1300px;
-    top: 180px;
+    left: 1200px;
+    top: 190px;
     font-weight: 400;
     font-size: 60px;
     line-height: 50px;
     color: rgba(255, 255, 255, 0.763);
     text-decoration: none;
     list-style: none;
+    
 
 
 } 
 
+.Gerar_Bilhete_Logo{
+
+    width: 50px;
+    height: 50px;
+    display: inline;
+}
+
+.Historico_Logo{
+    width: 50px;
+    height: 50px;
+    display: inline;
+
+}
+
+.Recarga_Logo{
+    width: 50px;
+    height: 50px;
+    display: inline;
+
+}
+
+.Teste_Logo{
+
+    width: 50px;
+    height: 50px;
+    display: inline;
+
+}
 
 ul li:hover { 
 
@@ -87,11 +127,98 @@ color: rgb(255, 255, 255, 0.763);
 
 .dados{ 
 
-color: grey; 
+color: grey;
+
 
 } 
 
 
+.Ul_Menu{ 
+
+    display: flex; 
+    margin-top: 550px; 
+    margin-left: 100px; 
+    list-style: none;
+    
+    } 
+
+    
+.precos{ 
+
+    width: 220px; 
+    height: 320px; 
+    background-color: #3e2888; 
+    font-size: 30px; 
+    text-align: center; 
+    position: relative; 
+    border: 1px solid blue; 
+    color:rgb(187, 187, 187); 
+    border-radius: 10px; 
+    box-shadow: 5px 5px rgb(112, 90, 169); 
+    
+    } 
+    
+    
+    .precos_sec{ 
+    
+    font-size:15px; 
+    margin: 10px; 
+  
+    
+    } 
+    
+    
+    .praticidade{ 
+    
+    width: 220px; 
+    height: 320px; 
+    background-color:  #3e2888; 
+    font-size: 30px; 
+    text-align: center; 
+    position: relative; 
+    border: 1px solid blue; 
+    margin-left: 50px; 
+    color: rgb(187, 187, 187); 
+    border-radius: 10px; 
+    box-shadow: 5px 5px rgb(112, 90, 169);     
+    
+    } 
+    
+    
+    .praticidade_sec{ 
+    
+    font-size:15px; 
+    margin:10px; 
+    margin-top: 60px;
+    
+    } 
+    
+    
+    .promocao{ 
+    
+    width: 220px; 
+    height: 320px; 
+    background-color:  #3e2888; 
+    font-size: 30px; 
+    text-align: center; 
+    position: relative; 
+    border: 1px solid blue; 
+    margin-left: 50px; 
+    color:rgb(187, 187, 187); 
+    border-radius: 10px; 
+    box-shadow: 5px 5px rgb(112, 90, 169); 
+    
+    } 
+    
+    
+    .promocao_sec{ 
+    
+    font-size:15px; 
+    margin: 10px; 
+    margin-top: 60px;
+    
+    } 
+    
 
 
 .modal-container{ 
@@ -184,8 +311,14 @@ border: 2px solid rgb(110, 116, 214);
 .termos{ 
 
 text-align: center; 
+color: rgba(255, 255, 255, 0.763);
+font-size: larger;
 
 } 
+
+
+
+
 
 
 /*Gerar bilhete-----------------------------------*/ 
@@ -198,6 +331,10 @@ display:flex ;
 padding-left: 700px; 
 padding-bottom: 20px; 
 height: 150px; 
+margin: -10px;
+border: 0px;
+
+
 
 } 
 
@@ -218,7 +355,9 @@ left:600px;
 width: 210px ; 
 height: 210px ; 
 border-radius: 50%; 
-position: absolute;  
+
+display:flex
+ 
 
 } 
 
@@ -274,6 +413,8 @@ display:flex ;
 padding-left: 850px; 
 padding-bottom: 20px; 
 height: 150px; 
+border: 0px;
+margin: -10px;
 
 } 
 
@@ -434,25 +575,23 @@ display: block;
 } 
 
 .botao_recarga{
-    
- width: 200px;
- height: 40px;
- border-radius: 10px;
- border: 3px solid rgb(112, 90, 169);
+
+width: 200px;
+height: 40px;
+border-radius: 10px;
+border: 3px solid rgb(112, 90, 169);
 
 }
 
 .selecao{
-    
- width: 150px;
- height: 50px;
- margin-top: 10px;
- border-radius: 10px;
- border: 3px solid rgb(112, 90, 169);
+
+width: 150px;
+height: 50px;
+margin-top: 10px;
+border-radius: 10px;
+border: 3px solid rgb(112, 90, 169);
 
 }
-
-
 
 /* Historico-------------------------------------*/
 
@@ -463,6 +602,8 @@ display:flex ;
 padding-left: 750px; 
 padding-bottom: 20px; 
 height: 150px; 
+border: 0px;
+margin: -10px;
 
 
 }
@@ -487,6 +628,136 @@ margin-left: 320px;
 
 }
 
+.codigohistorico{
+    margin-top: 50px;
+    margin-left: 780px;
+}
+
+.sidebar{
+position: absolute;
+width: 250px;
+height: 100%;
+margin-top:0px;
+padding-top: 30px;
+left:0;
+background: #3e2888;
+transition: 0.5s;
+transition-property: left;
+}
+
+.sidebar_logo{
 
 
+    border-radius: 50%;
+  
+    border: 3px solid #3e2888c6;
+    margin-left: 80px;
+}
+
+.sidebar img{
+
+width:40px;
+height: 40px;
+margin-top: 5px;
+
+
+
+}
+
+.sidebar h2{
+
+   color: rgb(187, 187, 187);
+   margin-top:0;
+   margin-bottom: 20px;
+   margin-left: 40px;
+}
+
+
+
+
+.sidebar a{
+
+    color: rgb(187, 187, 187);
+    display:block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 30px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background ;
+}
+
+.sidebar a:hover{
+    background-color: #4822c2;
     
+}
+
+
+label #sidebar_btn{
+
+    z-index:1 ;
+    position: fixed;
+    left:300px;
+    color: #fff;
+    font-size: 30px;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transition-property: color;
+    
+
+}
+
+label #sidebar_btn:hover{
+
+    color: #beb8d2;
+}
+
+#check:checked ~ .sidebar{
+
+   left: -190px; 
+}
+
+#check:checked ~ .sidebar a span{
+display: none;
+
+}
+
+#check:checked ~ .sidebar a{
+
+    font-size: 20px;
+    margin-left: 170px;
+    width: 80px;
+}
+
+#check{
+    display: none;
+}
+
+.Utilizacao_header{
+
+background-color: #3e2888; 
+display:flex ; 
+padding-left: 850px; 
+padding-bottom: 20px; 
+height: 150px; 
+border: 0px;
+margin: -10px;
+}
+
+.Utilizacao_header h3{
+
+font-size: 70px; 
+color: rgb(187, 187, 187); 
+left: 750px;
+position: absolute; 
+
+
+}
+    
+
+
+
+
+
