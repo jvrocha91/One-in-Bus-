@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="./functions.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Historico</title>
 </head>
 
@@ -39,15 +41,15 @@
   <a href="teste.html"><img class="Teste_Logo" src="assents/delivery.png" name="Utilização-outline"></img><span> Utilização</span></a>
   </div>
 <section class="Exibicao_Bilhete"></section>
-
+<p id="historico"></p>
 
 <section class="codigohistorico"> 
     <button type="button" class="codigohistoricox" placeholder="Código do bilhete"> 
-    <input type="text" id="codigo_bilhete"> 
+    <input type="text" id="HISTOS"> 
     </button> 
     
    
-        <input type = "button" class="salvar_tipo" onclick = "" value = "Gerenciar bilhete"></input>
+        <input type = "button" class="salvar_tipo" onclick = "GetHistory(); " value = "Gerenciar bilhete"></input>
     </form>
     </section>
 
