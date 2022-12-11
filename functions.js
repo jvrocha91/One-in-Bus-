@@ -1,19 +1,19 @@
-﻿function generateRandomNumber(){
-    const min=100000000;
-    const max=999999999;
-        var num=Math.floor(Math.random()*(max - min + 1) + min);
-return num;
+﻿function generateRandomNumber() {
+    const min = 100000000;
+    const max = 999999999;
+    var num = Math.floor(Math.random() * (max - min + 1) + min);
+    return num;
 }
 
-function generateIdUso(){
+function generateIdUso() {
 
-    const min=100;
+    const min = 100;
 
-    const max=999;
+    const max = 999;
 
-        var num=Math.floor(Math.random()*(max - min + 1) + min);
+    var num = Math.floor(Math.random() * (max - min + 1) + min);
 
-return num;
+    return num;
 }
 
 function show_Id() {
@@ -21,28 +21,28 @@ function show_Id() {
     let numero = generateRandomNumber();
     viso.innerHTML = numero
     return numero;
-    }
+}
 
-  function cadastraBilhete() {
-  
-  let id = show_Id();
+function cadastraBilhete() {
 
-  var xhr = new XMLHttpRequest();             
-    xhr.open("POST", "http://localhost:4000/Bilhete", true);             
-    xhr.setRequestHeader('Content-Type', 'application/json');             
-    xhr.send(JSON.stringify({                 
-        id:id,           
+    let id = show_Id();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:4000/Bilhete", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        id: id,
     }));
 }
 
 function recarregabil() {
     const codigoDatabase = document.getElementById('codigo_bilhete').value;
     var menu = document.getElementById("Tipo");
-	var value = menu.value;
-	var tipo = menu.options[menu.selectedIndex].text;
+    var value = menu.value;
+    var tipo = menu.options[menu.selectedIndex].text;
     console.log(codigoDatabase)
     console.log(tipo)
-    let objRecarga = { cdb:codigoDatabase, tipo:tipo };
+    let objRecarga = { cdb: codigoDatabase, tipo: tipo };
     let url = 'http://localhost:4000/Recarga/'
     let res = axios.post(url, objRecarga).then(response => {
         if (response.data) {
@@ -55,9 +55,9 @@ function recarregabil() {
             if (error.response) {
                 showmessageError();
                 const msg = new Comunicado
-                (error.reponse.data.mensagem);
+                    (error.response.data.mensagem);
                 console.log(msg.get());
-}
+            }
         })
 }
 function cadastraUsos() {
@@ -68,7 +68,7 @@ function cadastraUsos() {
     console.log(codigoDatabase)
     console.log(idUso)
 
-    let objUso = { cdb:codigoDatabase, idUso:idUso };
+    let objUso = { cdb: codigoDatabase, idUso: idUso };
 
     let url = 'http://localhost:4000/usoBilhete/'
 
@@ -94,20 +94,19 @@ function cadastraUsos() {
 
                 const msg = new Comunicado
 
-                (error.reponse.data.mensagem);
+                    (error.response.data.mensagem);
 
                 console.log(msg.get());
 
-}
+            }
 
         })
-        pegaDataDePrimeiroUso()
+    pegaDataDePrimeiroUso()
 }
-function pegaDataDePrimeiroUso()
-{
+function pegaDataDePrimeiroUso() {
     console.log("pegaDataDePrimeiroUso");
     const num = document.getElementById('codego').value;
-    let objUso = { cdb:num };
+    let objUso = { cdb: num };
 
     let url = 'http://localhost:4000/dataVencimento/'
 
@@ -115,8 +114,8 @@ function pegaDataDePrimeiroUso()
 
         if (response.data) {
 
-            console.log(reponse.data)
-        
+            console.log(response.data)
+
         }
 
     })
@@ -129,20 +128,19 @@ function pegaDataDePrimeiroUso()
 
                 const msg = new Comunicado
 
-                (error.reponse.data.mensagem);
+                    (error.response.data.mensagem);
 
                 console.log(msg.get());
 
-}
+            }
 
         })
-        GetSelectedBilhete()
+    GetSelectedBilhete()
 
 }
-function GetSelectedBilhete()
-{
+function GetSelectedBilhete() {
     const num = document.getElementById('codego').value;
-    let objUso = { cdb:num };
+    let objUso = { cdb: num };
 
     let url = 'http://localhost:4000/tipoBilhete/'
 
@@ -150,8 +148,8 @@ function GetSelectedBilhete()
 
         if (response.data) {
 
-            console.log(reponse.data)
-        
+            console.log(response.data)
+
         }
 
     })
@@ -164,39 +162,40 @@ function GetSelectedBilhete()
 
                 const msg = new Comunicado
 
-                (error.reponse.data.mensagem);
+                    (error.response.data.mensagem);
 
                 console.log(msg.get());
 
-}
+            }
 
         })
 
-        pegaCodigoEDeletaBilhete()
+    pegaCodigoEDeletaBilhete()
 }
 
-function GetHistory()
-{
+function GetHistory() {
+    console.log("GetHistory");
     const num = document.getElementById('HISTOS').value;
-    let objUso = { cdb:num };
-    let url = 'http://localhost:4000/HistoricoUso/' 
-    let res = axios.get(objUso, url).then(response => {
+    let url = 'http://localhost:4000/historicoUso/'
+    axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+    axios.get(url, {
+        params: {
+            cdb: num
+        }
+    }).then(response => {
+        console.log(response)
 
         if (response.data) {
 
             showHistorico(response.data)
-
-            showmessageSuccess();
-
-            const msg = new Comunicado(response.data.mensagem);
-
-            console.log(msg.get());
+            console.log(response.data)
 
         }
 
     })
-
         .catch(error => {
+            console.log(error)
+
 
             if (error.response) {
 
@@ -204,29 +203,30 @@ function GetHistory()
 
                 const msg = new Comunicado
 
-                (error.reponse.data.mensagem);
+                    (error.response.data.mensagem);
 
                 console.log(msg.get());
 
-}
+            }
 
         })
-            
+
+
+
 }
 
-function showHistorico(data)
-{
+
+function showHistorico(data) {
     let visorDoHistorico = document.getElementById('historico');
     let historico = data;
     visorDoHistorico.innerHTML = historico
     return historico;
 
 }
-function pegaCodigoEDeletaBilhete()
-{
+function pegaCodigoEDeletaBilhete() {
     console.log("pegaCodigoEDeletaBilhete");
     const num = document.getElementById('codego').value;
-    let objUso = { cdb:num };
+    let objUso = { cdb: num };
 
     let url = 'http://localhost:4000/apagarBilhete/'
 
@@ -234,8 +234,8 @@ function pegaCodigoEDeletaBilhete()
 
         if (response.data) {
 
-            console.log(reponse.data)
-        
+            console.log(response.data)
+
         }
 
     })
@@ -248,11 +248,11 @@ function pegaCodigoEDeletaBilhete()
 
                 const msg = new Comunicado
 
-                (error.reponse.data.mensagem);
+                    (error.response.data.mensagem);
 
                 console.log(msg.get());
 
-}
+            }
 
         })
 

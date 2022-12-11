@@ -7,7 +7,6 @@ const fs = require("fs");
 const { response } = require("express");
 const PORT = 4000;
 
-
 function conectarNoBancoDeDados() {
 	process.env.ORA_SDTZ = 'UTC-3';
 
@@ -59,21 +58,21 @@ function conectarNoBancoDeDados() {
 			console.log(erro)
 		}
 		try {
-            console.log("criando uso do bilhete")
-            const conexao = await this.getConexao();
-            const sql = 'CREATE TABLE USO_DO_BILHETE (USO_DO_BILHETE NUMBER(3)CONSTRAINT PK_USO_DO_BILHETE PRIMARY KEY,' +
-                'HORA_DE_USO NVARCHAR2(8),' +
-                'DATA_DE_USO DATE,'+
-                'FK_ID_USUARIO_BILHETE NUMBER(9),' +
-                'FOREIGN KEY (FK_ID_USUARIO_BILHETE) references BILHETE(ID_USUARIO_BILHETE))';
+			console.log("criando uso do bilhete")
+			const conexao = await this.getConexao();
+			const sql = 'CREATE TABLE USO_DO_BILHETE (USO_DO_BILHETE NUMBER(3)CONSTRAINT PK_USO_DO_BILHETE PRIMARY KEY,' +
+				'HORA_DE_USO NVARCHAR2(8),' +
+				'DATA_DE_USO DATE,' +
+				'FK_ID_USUARIO_BILHETE NUMBER(9),' +
+				'FOREIGN KEY (FK_ID_USUARIO_BILHETE) references BILHETE(ID_USUARIO_BILHETE))';
 
-            await conexao.execute(sql);
-            console.log('Table uso do bilhete created')
-        }
-        catch (erro) {
-            console.log(erro)
-        }
-    }
+			await conexao.execute(sql);
+			console.log('Table uso do bilhete created')
+		}
+		catch (erro) {
+			console.log(erro)
+		}
+	}
 }
 
 function inserirBilheteBanco(bd) {
@@ -110,47 +109,45 @@ function inserirRecargaBilhete(bd) {
 }
 
 function inserirUsosDoBilhete(bd) {
-    this.bd = bd;
+	this.bd = bd;
 
-    this.insert_use = async function (getUsoBilhete) {
+	this.insert_use = async function (getUsoBilhete) {
 
-        const sql1 = "INSERT INTO USO_DO_BILHETE VALUES (:0,:1,:2,:3)";
-        const dados = [(getUsoBilhete.idUso), (getUsoBilhete.horacri), (getUsoBilhete.datacri), (parseInt(getUsoBilhete.cdb))];
+		const sql1 = "INSERT INTO USO_DO_BILHETE VALUES (:0,:1,:2,:3)";
+		const dados = [(getUsoBilhete.idUso), (getUsoBilhete.horacri), (getUsoBilhete.datacri), (parseInt(getUsoBilhete.cdb))];
 
-        console.log(sql1, dados);
-        await conexao.execute(sql1, dados);
+		console.log(sql1, dados);
+		await conexao.execute(sql1, dados);
 
-        const sql2 = 'COMMIT';
-        await conexao.execute(sql2);
-    }
+		const sql2 = 'COMMIT';
+		await conexao.execute(sql2);
+	}
 }
 function getDataPrimeiroUso(bd) {
-    this.bd = bd;
+	this.bd = bd;
 
-    this.Find_Fist_Date = async function (codigo) {
+	this.Find_Fist_Date = async function (codigo) {
 
-        const dataPrimeiroUsoSql = 'select Min(DATA_DE_USO) from USO_DO_BILHETE where USO_DO_BILHETE.FK_ID_USUARIO_BILHETE =:0 ';
-		const result = await conexao.execute (dataPrimeiroUsoSql, [(codigo)])
+		const dataPrimeiroUsoSql = 'select Min(DATA_DE_USO) from USO_DO_BILHETE where USO_DO_BILHETE.FK_ID_USUARIO_BILHETE =:0 ';
+		const result = await conexao.execute(dataPrimeiroUsoSql, [(codigo)])
 		const result1 = result.rows[0][0]
 		global.dataPrimeiroUso = result1.toLocaleDateString("pt-br")
-        console.log(global.dataPrimeiroUso);
-		
+		console.log(global.dataPrimeiroUso);
 
-    }
+
+	}
 }
-function encontrarTipoDoBIlhete(bd)
-{
-	this.bd=bd;
+function encontrarTipoDoBIlhete(bd) {
+	this.bd = bd;
 
-	this.findBilheteType = async function(codigo){
-0
+	this.findBilheteType = async function (codigo) {
+		0
 		const bilheteTypeSql = 'select tipo_bilhete.TIPO_BILHETE FROM BILHETE JOIN TIPO_BILHETE on BILHETE.ID_USUARIO_BILHETE = tipo_bilhete.FK_ID_USUARIO_BILHETE where TIPO_BILHETE.FK_ID_USUARIO_BILHETE=:0';
 		const result = await conexao.execute(bilheteTypeSql, [(codigo)])
 		const bilheteType = result.rows[0][0]
 		console.log(bilheteType)
 		global.bilheteTypes
-		switch (bilheteType)
-		{
+		switch (bilheteType) {
 			case 'Bilhete Único':
 				global.bilheteTypes = 40
 				break;
@@ -163,40 +160,42 @@ function encontrarTipoDoBIlhete(bd)
 			case '30 dias':
 				global.bilheteTypes = 30
 				break;
-			
+
 			default:
 				global.bilheteTypes = -1
 				break;
 		}
 		console.log(global.bilheteTypes)
 	}
-	
+
 }
-function selectTheHistorico(bd)
-{
-	this.bd=bd;
-	this.findSelectedHistory = async function(codigo){
+function selectTheHistorico(bd) {
+	this.bd = bd;
+	this.findSelectedHistory = async function (codigo) {
 
-	const selecionarHistorico = 'select DATA_DE_USO.USO_DO_BILHETE FROM BILHETE JOIN USO_DO_BILHETE on BILHETE.ID_USUARIO_BILHETE = tipo_bilhete.FK_ID_USUARIO_BILHETE where USO_DO_BILHETE.FK_ID_USUARIO_BILHETE=:0';
+		const selecionarHistorico = 'select DATA_DE_USO From USO_DO_BILHETE where FK_ID_USUARIO_BILHETE=:0';
+		console.log(selecionarHistorico)
+		result = await conexao.execute(selecionarHistorico, [(codigo)])
+		console.log(result)
+		return result.rows
 
-	console.log(selecionarHistorico)
-	return await conexao.execute(selecionarHistorico, [(codigo)])
+
 	}
 }
-function dropBilhete(bd){
+function dropBilhete(bd) {
 
-	this.bd=bd
+	this.bd = bd
 	this.deletarBilhete = async function (codigo) {
 
-	const sql1 = 'delete from USO_DO_BILHETE where FK_ID_USUARIO_BILHETE =:0';
-	const sql2 ='delete from TIPO_BILHETE where FK_ID_USUARIO_BILHETE =:0';
-	const sql3 ='delete from BILHETE where ID_USUARIO_BILHETE =:0';
-	console.log(sql1,sql2,sql3, codigo);
-	await conexao.execute(sql1,[(codigo)]);
-	await conexao.execute(sql2,[(codigo)]);
-	await conexao.execute(sql3,[(codigo)]);
-	const sql4 = 'COMMIT';
-	await conexao.execute(sql4);
+		const sql1 = 'delete from USO_DO_BILHETE where FK_ID_USUARIO_BILHETE =:0';
+		const sql2 = 'delete from TIPO_BILHETE where FK_ID_USUARIO_BILHETE =:0';
+		const sql3 = 'delete from BILHETE where ID_USUARIO_BILHETE =:0';
+		console.log(sql1, sql2, sql3, codigo);
+		await conexao.execute(sql1, [(codigo)]);
+		await conexao.execute(sql2, [(codigo)]);
+		await conexao.execute(sql3, [(codigo)]);
+		const sql4 = 'COMMIT';
+		await conexao.execute(sql4);
 	}
 }
 
@@ -206,6 +205,7 @@ async function inclusaoRecarga(req, res) {
 	try {
 		await global.recargas.insert_re(Recarga);
 		console.log('Insert Recarga working');
+		res.status(200)
 	}
 	catch (err) {
 		console.log('Error in inclusaoRecarga');
@@ -218,6 +218,7 @@ async function pegarDataVencimento(req, res) {
 	try {
 		await global.Data.Find_Fist_Date(codigo);
 		console.log('Pegar data vencimento working');
+		res.status(200)
 	}
 	catch (err) {
 		console.log('Error in dataVencimento');
@@ -230,32 +231,36 @@ async function pegarTipoBilhete(req, res) {
 	try {
 		await global.tipo.findBilheteType(codigo);
 		console.log('finding working');
+		res.status(200)
 	}
 	catch (err) {
 		console.log('Error in pegarTipoBilhete');
 		console.log(err)
 	}
 }
-async function selectHistorico(req, res){
-	const codigo=req.body.cdb
+async function selectHistorico(req, res, next) {
+	const codigo = req.query.cdb
 	console.log(codigo)
-	try{
-		await global.historicos.findSelectedHistory(codigo);
-		console.log("Selecting Funciona")
+	try {
+		const returno = await global.historicos.findSelectedHistory(codigo);
+		console.log("recebendo historico")
+		console.log(returno)
+		res.status(200).send(returno)
 	}
-	catch(err){
+	catch (err) {
 		console.log("error in selecting")
 		console.log(err)
 	}
 }
-async function DeleteBil(req, res){
+async function DeleteBil(req, res) {
 	const codigo = req.body.cdb
 	console.log(codigo)
-	try{
+	try {
 		await global.deletando.deletarBilhete(codigo);
 		console.log("deleting Funciona")
+		res.status(200)
 	}
-	catch(err){
+	catch (err) {
 		console.log("error in deleting")
 		console.log(err)
 	}
@@ -276,11 +281,11 @@ function Bilhete(id, datac, horac) {
 }
 
 function getUsoBilhete(idUso, cdb) {
-    this.idUso = idUso;
-    this.cdb = cdb;
-    this.datacri = new Date().toLocaleDateString("pt-br");
-    this.horacri = new Date().toLocaleTimeString("pt-br");
-    console.log(idUso)
+	this.idUso = idUso;
+	this.cdb = cdb;
+	this.datacri = new Date().toLocaleDateString("pt-br");
+	this.horacri = new Date().toLocaleTimeString("pt-br");
+	console.log(idUso)
 	console.log(cdb)
 }
 
@@ -307,59 +312,54 @@ async function inclusaoBilhete(req, res) {
 	}
 }
 async function inclusaoUso(req, res) {
-    const usoBilhete = new getUsoBilhete(req.body.idUso, req.body.cdb)
-    console.log(usoBilhete)
-    try {
-        await global.usos.insert_use(usoBilhete);
-        console.log('Insert uso working');
-    }
-    catch (err) {
-        console.log('Error in inclusaoUso');
-        console.log(err)
-    }
+	const usoBilhete = new getUsoBilhete(req.body.idUso, req.body.cdb)
+	console.log(usoBilhete)
+	try {
+		await global.usos.insert_use(usoBilhete);
+		console.log('Insert uso working');
+	}
+	catch (err) {
+		console.log('Error in inclusaoUso');
+		console.log(err)
+	}
 }
-function encontrarDiaMesAnoVence (req,res)
-{
+function encontrarDiaMesAnoVence(req, res) {
 	console.log("encontrarDiaMesAnoVence")
 	console.log(global.dataPrimeiroUso)
 	var result = global.dataPrimeiroUso.split("/").reverse().join("/")
 	console.log(result)
 	dataVencimento = new Date(result);
 	console.log(dataVencimento)
-	dataAtual =  new Date();
+	dataAtual = new Date();
 	console.log(dataAtual)
-	
-	if (global.bilheteTypes == 7)
-	{
-	dataVencimento.setDate(dataVencimento.getDate()+7);
-	console.log(dataVencimento)
 
-	if (dataAtual > dataVencimento)
-	{
-		console.log("deletando bilhete 7 dias")
-		DeleteBil(req, res)
-	}
-	else
-	{
-		console.log("Bilhete esta dentro do prazo")
-	}
+	if (global.bilheteTypes == 7) {
+		dataVencimento.setDate(dataVencimento.getDate() + 7);
+		console.log(dataVencimento)
+
+		if (dataAtual > dataVencimento) {
+			console.log("deletando bilhete 7 dias")
+
+			DeleteBil(req, res)
+		}
+		else {
+			console.log("Bilhete esta dentro do prazo")
+		}
 
 	}
-	if (global.bilheteTypes == 30)
-	{
-	dataVencimento.setDate(dataVencimento.getDate()+30);
+	if (global.bilheteTypes == 30) {
+		dataVencimento.setDate(dataVencimento.getDate() + 30);
 
-	if (dataAtual > global.dataPrimeiroUso)
-	{
-		console.log("deletando bilhete 30 dias")
-		DeleteBil(req, res)
-	}
-	else
-	{
-		console.log("Bilhete esta dentro do prazo")
-	}
+		if (dataAtual > global.dataPrimeiroUso) {
+			console.log("deletando bilhete 30 dias")
+			DeleteBil(req, res)
+		}
+		else {
+			console.log("Bilhete esta dentro do prazo")
+		}
 
 	}
+	res.status(200)
 }
 
 
@@ -386,15 +386,16 @@ async function abrirServer() {
 		app.use(cors());
 		next();
 	});
+	app.options('*', cors()); // this enables preflight
 
 	// cria o endpoint POST /Bilhete e /Recarga
 	app.post('/Bilhete', inclusaoBilhete);
 	app.post('/Recarga', inclusaoRecarga);
 	app.post('/usoBilhete', inclusaoUso);
-	app.post('/dataVencimento',pegarDataVencimento);
+	app.post('/dataVencimento', pegarDataVencimento);
 	app.post('/tipoBilhete', pegarTipoBilhete)
-	app.get('/HistoricoUso',selectHistorico)
-	app.post('/apagarBilhete',encontrarDiaMesAnoVence)
+	app.get('/historicoUso', selectHistorico)
+	app.post('/apagarBilhete', encontrarDiaMesAnoVence)
 
 	console.log('Server port ' + PORT);
 	app.listen(PORT);
