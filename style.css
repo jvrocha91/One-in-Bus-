@@ -377,6 +377,12 @@ border-radius: 10px;
 
 } 
 
+.gerarsection p{
+
+font-size: 50px;
+text-align: center;
+    
+}
  
 .gerar_Bil{
 background-color: #3e2888; 
@@ -632,6 +638,11 @@ margin-left: 320px;
     margin-top: 50px;
     margin-left: 780px;
 }
+
+
+
+/* Sidebar-------------------------------------*/
+
 
 .sidebar{
 position: absolute;
