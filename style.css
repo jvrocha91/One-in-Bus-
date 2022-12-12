@@ -24,10 +24,6 @@ font-family: 'Space Mono', monospace;
     width: 1650px;
     padding-top: 30px;
 
-
-
-
-    
 }
 
 .Titulo{
@@ -56,6 +52,7 @@ font-family: 'Space Mono', monospace;
 .logo:hover{
 
     transform: scale(1.1)
+
 }
 
 
@@ -74,8 +71,6 @@ font-family: 'Space Mono', monospace;
     text-decoration: none;
     list-style: none;
     
-
-
 } 
 
 .Gerar_Bilhete_Logo{
@@ -83,6 +78,7 @@ font-family: 'Space Mono', monospace;
     width: 50px;
     height: 50px;
     display: inline;
+
 }
 
 .Historico_Logo{
@@ -122,13 +118,9 @@ color: rgb(255, 255, 255, 0.763);
 } 
 
 
-
-
-
 .dados{ 
 
 color: grey;
-
 
 } 
 
@@ -139,7 +131,6 @@ color: grey;
     margin-top: 550px; 
     margin-left: 100px; 
     list-style: none;
-    
     } 
 
     
@@ -164,7 +155,6 @@ color: grey;
     font-size:15px; 
     margin: 10px; 
   
-    
     } 
     
     
