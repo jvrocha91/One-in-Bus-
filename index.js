@@ -146,7 +146,7 @@ function encontrarTipoDoBIlhete(bd) {
 	this.bd = bd;
 
 	this.findBilheteType = async function (codigo) {
-		
+		0
 		const bilheteTypeSql = 'select tipo_bilhete.TIPO_BILHETE FROM BILHETE JOIN TIPO_BILHETE on BILHETE.ID_USUARIO_BILHETE = tipo_bilhete.FK_ID_USUARIO_BILHETE where TIPO_BILHETE.FK_ID_USUARIO_BILHETE=:0';
 		const result = await conexao.execute(bilheteTypeSql, [(codigo)])
 		const bilheteType = result.rows[0][0]
@@ -336,11 +336,11 @@ function encontrarDiaMesAnoVence(req, res) {
 	var dateex = '01-02-1990';
 	var result1 = dateex + ' ' + global.tempoPrimeiroUso
 	console.log(result)
-	console.log(result1);
+	console.log(result1)
 	dataVencimento = new Date(result);
-	tempoVencimento = new Date(result1);
-	console.log(dataVencimento);
-	console.log(tempoVencimento);
+	tempoVencimento = new Date(result1)
+	console.log(dataVencimento)
+	console.log(tempoVencimento)
 	dataAtual = new Date();
 	console.log(dataAtual)
 	if (global.bilheteTypes == 40) {
