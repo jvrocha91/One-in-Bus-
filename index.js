@@ -129,10 +129,15 @@ function getDataPrimeiroUso(bd) {
 	this.Find_Fist_Date = async function (codigo) {
 
 		const dataPrimeiroUsoSql = 'select Min(DATA_DE_USO) from USO_DO_BILHETE where USO_DO_BILHETE.FK_ID_USUARIO_BILHETE =:0 ';
+		const tempoPrimeiroUsoSql = 'select Min(HORA_DE_USO) from USO_DO_BILHETE where USO_DO_BILHETE.FK_ID_USUARIO_BILHETE =:0 ';
 		const result = await conexao.execute(dataPrimeiroUsoSql, [(codigo)])
+		const resultTempo = await conexao.execute(tempoPrimeiroUsoSql, [(codigo)])
 		const result1 = result.rows[0][0]
+		const result2 = resultTempo.rows[0][0]
 		global.dataPrimeiroUso = result1.toLocaleDateString("pt-br")
+		global.tempoPrimeiroUso = result2.toLocaleDateString("pt-br")
 		console.log(global.dataPrimeiroUso);
+		console.log(global.tempoPrimeiroUso)
 
 
 	}
@@ -326,12 +331,46 @@ async function inclusaoUso(req, res) {
 function encontrarDiaMesAnoVence(req, res) {
 	console.log("encontrarDiaMesAnoVence")
 	console.log(global.dataPrimeiroUso)
+	console.log(global.tempoPrimeiroUso)
 	var result = global.dataPrimeiroUso.split("/").reverse().join("/")
-	console.log(result)
+	var dateex = '01-02-1990';
+	var result1 = dateex + ' ' + global.tempoPrimeiroUso
+	console.log(result);
+	console.log(result1);
 	dataVencimento = new Date(result);
-	console.log(dataVencimento)
+	tempoVencimento = new Date(result1);
+	console.log(dataVencimento);
+	console.log(tempoVencimento);
 	dataAtual = new Date();
 	console.log(dataAtual)
+	if (global.bilheteTypes == 40) {
+		tempoVencimento.setMinutes(tempoVencimento.getMinutes() + 40)
+		console.log(tempoVencimento)
+
+		if (dataAtual > tempoVencimento) {
+			console.log("deletando bilhete 40 minutos")
+
+			DeleteBil(req, res)
+		}
+		else {
+			console.log("Bilhete esta dentro do prazo")
+		}
+
+	}
+	if (global.bilheteTypes == 80) {
+		tempoVencimento.setMinutes(tempoVencimento.getMinutes() + 80)
+		console.log(tempoVencimento)
+
+		if (dataAtual > tempoVencimento) {
+			console.log("deletando bilhete 80 minutos")
+
+			DeleteBil(req, res)
+		}
+		else {
+			console.log("Bilhete esta dentro do prazo")
+		}
+
+	}
 
 	if (global.bilheteTypes == 7) {
 		dataVencimento.setDate(dataVencimento.getDate() + 7);
@@ -375,7 +414,9 @@ async function abrirServer() {
 	global.historicos = new selectTheHistorico(bd);
 	global.deletando = new dropBilhete(bd);
 	global.dataPrimeiroUso;
+	global.tempoPrimeiroUso;
 	global.bilheteTypes;
+
 
 	app.use(express.json());
 	app.use(cors());
